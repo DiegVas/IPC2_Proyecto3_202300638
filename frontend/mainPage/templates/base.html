@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Análisis de Sentimientos</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="{% url 'home' %}" class="brand">
+            <span class="brand-name">Análisis de Sentimientos</span>
+          </a>
+
+          <nav class="nav-links">
+            <a href="{% url 'home' %}" class="nav-link">Inicio</a>
+            <a href="#" class="nav-link">Cargar Archivo</a>
+
+            <div class="dropdown">
+              <a href="#" class="nav-link">Peticiones</a>
+              <div class="dropdown-content">
+                <a href="#">Consultar Datos</a>
+                <a href="#">Resumen por Fecha</a>
+                <a href="#">Resumen por Rango</a>
+                <a href="#">Reporte PDF</a>
+                <a href="#">Prueba de Mensaje</a>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <a href="#" class="nav-link">Ayuda</a>
+              <div class="dropdown-content">
+                <a href="#">Información del Estudiante</a>
+                <a href="#">Documentación</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content" role="main">
+      <div class="container">{% block content %}{% endblock %}</div>
+    </main>
+  </body>
+</html>

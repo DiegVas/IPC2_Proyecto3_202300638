@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card medium-card">
+  <h2>Resumen por Fecha</h2>
+
+  <form method="post" class="summary-form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="date" class="form-label">Fecha</label>
+      <input type="date" id="date" name="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="company" class="form-label">Empresa</label>
+      <select id="company" name="company" class="form-control">
+        <option value="all">Todas las empresas</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    </div>
+  </form>
+
+  {% if data %}
+  <div class="result-section">
+    <h3>Resultados:</h3>
+    <div class="results-table-wrapper">
+      <!-- Aquí iría tu tabla de resultados -->
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

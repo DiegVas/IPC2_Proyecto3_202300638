@@ -1,9 +1,9 @@
 
 from django.contrib import admin
 from django.urls import path
-from mainPage.views import IndexView
+from mainPage.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView),
+    path('', home , name='home'),
 ]

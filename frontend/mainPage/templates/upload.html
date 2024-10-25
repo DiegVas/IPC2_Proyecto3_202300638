@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card medium-card upload-card">
+  <h2>Cargar Archivo XML</h2>
+
+  <form method="post" enctype="multipart/form-data" class="upload-form">
+    {% csrf_token %}
+
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-content">
+        <img src="{% static 'img/upload-icon.svg' %}" alt="Upload" class="upload-icon" />
+        <p class="drop-text">Arrastra tu archivo XML aquí</p>
+        <p class="drop-text-small">o</p>
+        <label for="fileInput" class="btn btn-primary">Seleccionar archivo</label>
+        <input type="file" id="fileInput" name="xmlFile" accept=".xml" class="hidden-input" />
+        <p class="file-info">XML hasta 10MB</p>
+      </div>
+
+      <div class="file-preview hidden" id="filePreview">
+        <div class="file-details">
+          <span class="file-name"></span>
+          <span class="file-size"></span>
+        </div>
+        <button type="button" class="btn btn-text" id="removeFile">
+          <span class="remove-icon">×</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" id="uploadButton" disabled>Cargar</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
