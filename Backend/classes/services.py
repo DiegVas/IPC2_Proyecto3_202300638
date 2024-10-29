@@ -1,6 +1,8 @@
 
 from datetime import date, datetime
 import string
+import json
+import copy
 
 class Service:
     def __init__(self, name, aliases):
@@ -25,9 +27,17 @@ class Dictionary:
         self.positive_sentiments = possitive_sentiments
         self.negative_sentiments = negative_sentiments
         self.analize_companies = analize_companies
+        
+    def copy(self):
+        # Crear una nueva instancia de Dictionary con copias de los atributos
+        return Dictionary(
+            self.positive_sentiments.copy(),
+            self.negative_sentiments.copy(),
+            [Company(company.name, [Service(service.name, service.aliases) for service in company.services]) for company in self.analize_companies]
+        )
 
 class Message:
-    def __init__(self, message_data, dictionary):
+    def __init__(self, message_data):
         self.date = None
         self.user = None
         self.social_network = None
@@ -39,7 +49,6 @@ class Message:
 
         # Analizar el mensaje
         self.parse_message(message_data)
-        self.analyze_message(dictionary)
 
     def parse_message(self, message_data):
         # Extraer la fecha, usuario y red social del mensaje
@@ -83,6 +92,65 @@ class Message:
                 company.negative_messages += self.negative_messages
                 company.neutral_messages += self.neutral_messages
 
+class DataAnalizeManager:
+    def __init__(self, dictionary):
+        self.dictionary = dictionary
+        self.data_analize_by_date = {}
+
+    def add_message(self, message):
+        newDictonary = self.dictionary.copy()
+        message_date = message.date
+        
+        if message_date not in self.data_analize_by_date:
+            self.data_analize_by_date[message_date] = DataAnalize(newDictonary, [])
+            
+        self.data_analize_by_date[message_date].lista_mensajes.append(message)
+        
+    def generate_json_response(self):
+        response = []
+        
+        for date, data_analize in self.data_analize_by_date.items():
+            date_response = {
+                "fecha": date.strftime("%d/%m/%Y"),
+                "mensajes": {
+                    "total": data_analize.total_messages,
+                    "positivos": data_analize.positive_messages,
+                    "negativos": data_analize.negative_messages,
+                    "neutros": data_analize.neutral_messages
+                },
+                "analisis": []
+            }
+
+            for company in data_analize.dictionary.analize_companies:
+                company_data = {
+                    "nombre": company.name,
+                    "mensajes": {
+                        "total": company.total_messages,
+                        "positivos": company.positive_messages,
+                        "negativos": company.negative_messages,
+                        "neutros": company.neutral_messages
+                    },
+                    "servicios": []
+                }
+
+                for service in company.services:
+                    service_data = {
+                        "nombre": service.name,
+                        "mensajes": {
+                            "total": service.total_messages,
+                            "positivos": service.positive_messages,
+                            "negativos": service.negative_messages,
+                            "neutros": service.neutral_messages
+                        }
+                    }
+                    company_data["servicios"].append(service_data)
+
+                date_response["analisis"].append(company_data)
+
+            response.append(date_response)
+
+        return json.dumps(response, indent=4)
+
 class DataAnalize:
     def __init__(self, dictionary, messages_list):
         self.dictionary = dictionary
@@ -94,7 +162,6 @@ class DataAnalize:
         
     def analyze_messages(self):
         for message in self.lista_mensajes:
-            print(message.message)
             self.total_messages += 1
             self.positive_messages += message.positive_messages
             self.negative_messages += message.negative_messages
@@ -109,3 +176,43 @@ class DataAnalize:
                                 service.positive_messages += message.positive_messages
                                 service.negative_messages += message.negative_messages
                                 service.neutral_messages += message.neutral_messages
+                                break
+    def generate_json_response(self):
+        response = {
+            "fecha": "01/04/2022",  # Puedes ajustar la fecha según sea necesario
+            "mensajes": {
+                "total": self.total_messages,
+                "positivos": self.positive_messages,
+                "negativos": self.negative_messages,
+                "neutros": self.neutral_messages
+            },
+            "analisis": []
+        }
+
+        for company in self.dictionary.analize_companies:
+            company_data = {
+                "nombre": company.name,
+                "mensajes": {
+                    "total": company.total_messages,
+                    "positivos": company.positive_messages,
+                    "negativos": company.negative_messages,
+                    "neutros": company.neutral_messages
+                },
+                "servicios": []
+            }
+
+            for service in company.services:
+                service_data = {
+                    "nombre": service.name,
+                    "mensajes": {
+                        "total": service.total_messages,
+                        "positivos": service.positive_messages,
+                        "negativos": service.negative_messages,
+                        "neutros": service.neutral_messages
+                    }
+                }
+                company_data["servicios"].append(service_data)
+
+            response["analisis"].append(company_data)
+
+        return json.dumps(response, indent=4)

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from utils.loadData import loadData
+from utils.generateXML import generate_xml_response
 
 app = Flask(__name__)
 
@@ -17,12 +18,13 @@ def index():
 @app.route('/upload_xml', methods=['POST'])
 def upload_xml():
     global AnalizeData
-    print("upload_xml")
     request_data = request.get_json()
     AnalizeData = loadData(request_data)
-    AnalizeData.analyze_messages()
-    
-    return jsonify({"message": "XML uploaded."})
+    json_response = AnalizeData.generate_json_response()
+    print(json_response)
+   
+    #print(json_response)
+    return jsonify({"data":json_response})
     
     
 if __name__ == '__main__':
