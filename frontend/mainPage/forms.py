@@ -1,11 +1,7 @@
 from django import forms
 
-class XMLUploadForm(forms.Form):
-    xml_file = forms.FileField(
-        label='Selecciona un archivo XML',
-        help_text='Archivo XML con mensajes para análisis',
-        widget=forms.FileInput(attrs={
-            'class': 'form-control',
-            'accept': '.xml'
-        })
-    )
+
+    
+class AnalysisForm(forms.Form):
+    first_text = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Ingrese el primer texto para analizar...'}))
+    second_text = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Ingrese el segundo texto para analizar...'}))

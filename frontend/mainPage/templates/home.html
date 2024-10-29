@@ -1,19 +1,17 @@
 {% extends 'base.html' %} {% block content %}
-<div class="grid-2">
-  <div class="card feature-card">
-    <h2>Análisis de Sentimientos</h2>
-    <p class="card-description">Analiza el sentimiento de mensajes en redes sociales de forma rápida y precisa.</p>
-    <div class="button-group">
-      <form method="POST" action="{% url 'upload_xml' %}" enctype="multipart/form-data" style="display: inline">
-        {% csrf_token %}
-        <input type="file" name="xml_file" accept=".xml" style="display: none" id="xml_input" required />
-        <label class="btn btn-primary" for="xml_input"> Cargar Archivo XML </label>
-        <button type="submit" class="btn btn-indigo">Enviar</button>
-      </form>
-      <a href="#" class="btn btn-success">Probar Mensaje</a>
-    </div>
+<div class="card feature-card formsub">
+  <h2>Subir archivos</h2>
+  <div class="button-group">
+    <form method="POST" action="{% url 'upload_xml' %}" enctype="multipart/form-data" style="display: inline">
+      {% csrf_token %}
+      <input type="file" name="xml_file" accept=".xml" style="display: none" id="xml_input" required />
+      <label class="btn btn-primary" for="xml_input"> Cargar Archivo XML </label>
+      <button type="submit" class="btn btn-indigo">Enviar</button>
+    </form>
   </div>
+</div>
 
+<form class="form-group">
   <div class="card feature-card">
     <h2>Consultas y Reportes</h2>
     <div class="button-group">
@@ -21,33 +19,36 @@
       <a href="#" class="btn btn-indigo">Resumen por Fecha</a>
       <a href="#" class="btn btn-pink">Resumen por Rango</a>
       <a href="#" class="btn btn-danger">Generar PDF</a>
+      <a href="#" class="btn btn-success">Probar Mensaje</a>
+      <button type="reset" class="btn btn-danger" id="resetA">Limpiar</button>
     </div>
   </div>
-</div>
+  <div class="container">
+    <div class="card">
+      <h2 class="analysis-title">Análisis Comparativo</h2>
 
-<div class="container">
-  <div class="card">
-    <h2 class="analysis-title">Análisis Comparativo</h2>
-
-    <form class="form-group">
-      {% csrf_token %}
+      {% csrf_token %} {{ form.as_p }}
       <div class="textarea-row">
         <div class="textarea-container">
           <label class="textarea-label">Primer Texto</label>
-          <textarea class="analysis-textarea" placeholder="Ingrese el primer texto para analizar..."></textarea>
+          <textarea class="analysis-textarea" name="first_text" placeholder="Ingrese el primer texto para analizar...">
+      {{ first_text }}</textarea
+          >
         </div>
 
         <div class="textarea-container">
           <label class="textarea-label">Segundo Texto</label>
-          <textarea class="analysis-textarea" placeholder="Ingrese el segundo texto para analizar..."></textarea>
+          <textarea
+            class="analysis-textarea"
+            name="second_text"
+            placeholder="Ingrese el segundo texto para analizar..."
+          >
+        {{ form.second_text.value }}</textarea
+          >
         </div>
       </div>
-
-      <div class="button-group analysis-buttons">
-        <button type="reset" class="btn btn-danger">Limpiar</button>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+</form>
 
 {% endblock %}

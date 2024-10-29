@@ -69,7 +69,7 @@ def xml_to_json(xml_file):
                 if mensaje.text
             ]
         data = convert_to_lowercase(data)
-        return data
+        return [data,ET.tostring(root, encoding='unicode')]
     
     except ET.ParseError as e:
         raise ValueError(f"Invalid XML format: {str(e)}")
@@ -85,13 +85,3 @@ def convert_to_lowercase(data):
         return data.lower()
     else:
         return data
-
-# Ejemplo de uso en el contexto del archivo xml_Reader.py
-data = {
-    "diccionario": {
-        "sentimientos_positivos": [],
-        "sentimientos_negativos": [],
-        "empresas_analizar": []
-    },
-    "lista_mensajes": []
-}

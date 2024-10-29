@@ -52,21 +52,18 @@ body {
 .card {
   background-color: var(--card-bg);
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formsub {
+  padding: 1rem 2rem;
 }
 
 .medium-card {
   max-width: 800px;
   margin: 2rem auto;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem 0;
 }
 
 .form-group {
@@ -230,7 +227,7 @@ body {
 }
 
 .analysis-textarea {
-  height: 700px;
+  height: 400px;
   min-height: 300px;
   resize: vertical;
   background-color: rgba(255, 255, 255, 0.05);
