@@ -4,7 +4,12 @@
     <h2>Análisis de Sentimientos</h2>
     <p class="card-description">Analiza el sentimiento de mensajes en redes sociales de forma rápida y precisa.</p>
     <div class="button-group">
-      <a href="#" class="btn btn-primary">Cargar Archivo XML</a>
+      <form method="POST" action="{% url 'upload_xml' %}" enctype="multipart/form-data" style="display: inline">
+        {% csrf_token %}
+        <input type="file" name="xml_file" accept=".xml" style="display: none" id="xml_input" required />
+        <label class="btn btn-primary" for="xml_input"> Cargar Archivo XML </label>
+        <button type="submit" class="btn btn-indigo">Enviar</button>
+      </form>
       <a href="#" class="btn btn-success">Probar Mensaje</a>
     </div>
   </div>
@@ -19,4 +24,38 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="card">
+    <h2 class="analysis-title">Análisis Comparativo</h2>
+
+    <form class="form-group">
+      {% csrf_token %}
+      <div class="textarea-row">
+        <div class="textarea-container">
+          <label class="textarea-label">Primer Texto</label>
+          <textarea class="analysis-textarea" placeholder="Ingrese el primer texto para analizar..."></textarea>
+        </div>
+
+        <div class="textarea-container">
+          <label class="textarea-label">Segundo Texto</label>
+          <textarea class="analysis-textarea" placeholder="Ingrese el segundo texto para analizar..."></textarea>
+        </div>
+      </div>
+
+      <div class="button-group analysis-buttons">
+        <button type="submit" class="btn btn-purple">Comparar Textos</button>
+        <button type="reset" class="btn btn-danger">Limpiar</button>
+      </div>
+    </form>
+
+    <div class="result-section">
+      <h3 class="result-title">Resultados del Análisis</h3>
+      <div class="result-content">
+        <!-- Aquí se mostrarán los resultados del análisis -->
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

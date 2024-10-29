@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solicitud_clasificacion>
+  <diccionario>
+    <sentimientos_positivos>
+      <palabra>bueno</palabra>
+      <palabra>excelente</palabra>
+      <palabra>cool</palabra>
+      <palabra>satisfecho</palabra>
+    </sentimientos_positivos>
+    <sentimientos_negativos>
+      <palabra>malo</palabra>
+      <palabra>decepcionado</palabra>
+    </sentimientos_negativos>
+    <empresas_analizar>
+      <empresa>
+        <nombre>USAC</nombre>
+        <servicios>
+          <servicio nombre="inscripción">
+            <alias>inscribí</alias>
+            <alias>HOLI</alias>
+          </servicio>
+          <servicio nombre="asignación">
+            <alias>asignado</alias>
+            <alias>ADIOs</alias>
+          </servicio>
+        </servicios>
+      </empresa>
+      <empresa>
+        <nombre>Facebook</nombre>
+        <servicios>
+          <servicio nombre="red social">
+            <alias>Facebook</alias>
+            <alias>FB</alias>
+          </servicio>
+        </servicios>
+      </empresa>
+    </empresas_analizar>
+  </diccionario>
+  <lista_mensajes>
+    <mensaje>
+      Lugar y fecha: Guatemala, 01/04/2022 15:01 Usuario: user1@usac.edu.gt Red social: Twitter
+      El servicio en la USAC para inscripción, inscribí, holi adios, asignado fue excelente y estoy satisfecho lo dire a mis amigos en Facebook.
+    </mensaje>
+    <mensaje>
+      Lugar y fecha: Guatemala, 01/04/2022 15:20 Usuario: user2@usac.edu.gt Red social: Facebook
+      No me gustó el proceso de asignación, fue malo y me siento decepcionado esto lo comparto en facebook.
+    </mensaje>
+  </lista_mensajes>
+</solicitud_clasificacion>
