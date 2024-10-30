@@ -12,26 +12,39 @@ import json
 
 flaskAPI = "http://127.0.0.1:5000"
 
+xml_content = ""
+xml_result = ""
+companies = []
+json_data = {}
+
 
 def home(request):
     return render(request, "home.html")
 
 
 def upload_xml(request):
+    global xml_content, xml_result, companies, json_data
     first_text = ""
     if request.method == "POST":
         try:
             xml_file = request.FILES["xml_file"]
             json_data, xml_content = xml_to_json(xml_file)
-
+            
+            
             response = requests.post(flaskAPI + "/upload_xml", json=json_data)
             response_json = response.json()
+            
+            
+            
 
             xml_result = ""
+            companies = []
 
             if "data" in response_json:
                 nested_json = json.loads(response_json["data"])
+                companies = response_json["companies"]
                 xml_result = json_to_xml(nested_json)
+                print(companies)
 
             return render(
                 request,
@@ -40,6 +53,7 @@ def upload_xml(request):
                     "first_text": xml_content,
                     "xml_result": pformat(json_data),
                     "second_text": xml_result,
+                    "companies": companies,
                 },
             )
         except Exception as e:
@@ -57,18 +71,63 @@ def query_data(request):
 
 
 def date_summary(request):
+    global xml_result
     if request.method == "POST":
-        # Aquí iría la lógica para el resumen por fecha
-        result = "Resumen por fecha..."
-        return render(request, "home.html", {"query_result": result})
+        
+        print(request.POST)
+        fecha_seleccionada = request.POST.get('singleDate')
+        companiesGet = request.POST.getlist('company')
+        response = requests.post(flaskAPI + "/DateData", json={"date": fecha_seleccionada, "companies": companiesGet})
+        response_json = response.json()
+        
+        if "data" in response_json:
+            print(response_json)
+            try:
+                nested_json = json.loads(response_json["data"])
+                xml_result = json_to_xml(nested_json)
+            except Exception as e:
+                xml_result = f"Error processing JSON: {str(e)}"
+                    
+        return render(
+                request,
+                "home.html",
+                {
+                    "first_text": xml_content,
+                    "xml_result": pformat(json_data),
+                    "second_text": xml_result,
+                    "companies": companies,
+                },
+            )
     return redirect("home")
 
 
 def range_summary(request):
     if request.method == "POST":
-        # Aquí iría la lógica para el resumen por rango
-        result = "Resumen por rango..."
-        return render(request, "home.html", {"query_result": result})
+        print(request.POST)
+        fecha_seleccionada = request.POST.get('dateRange')
+        companiesGet = request.POST.getlist('company')
+        fecha_seleccionada = fecha_seleccionada.split(" to ")
+        response = requests.post(flaskAPI + "/RangeData", json={"date": fecha_seleccionada, "companies": companiesGet})
+        response_json = response.json()
+        
+        if "data" in response_json:
+            print(response_json)
+            try:
+                nested_json = json.loads(response_json["data"])
+                xml_result = json_to_xml(nested_json)
+            except Exception as e:
+                xml_result = f"Error processing JSON: {str(e)}"
+                    
+        return render(
+                request,
+                "home.html",
+                {
+                    "first_text": xml_content,
+                    "xml_result": pformat(json_data),
+                    "second_text": xml_result,
+                    "companies": companies,
+                },
+            )
     return redirect("home")
 
 

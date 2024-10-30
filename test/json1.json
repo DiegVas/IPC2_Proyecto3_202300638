@@ -1,0 +1,18 @@
+{
+  "diccionario": {
+    "sentimientos_positivos": ["excelente", "bueno", "maravilloso"],
+    "sentimientos_negativos": ["lamentable", "frustrante", "deficiente"],
+    "empresas_analizar": [
+      { "nombre": "nike", "servicios": [{ "nombre": "cobrar", "alias": ["cobrando", "cobran", "cobrado"] }] },
+      { "nombre": "adidas", "servicios": [{ "nombre": "venta", "alias": ["vendido"] }] },
+      { "nombre": "walmart", "servicios": [{ "nombre": "atención", "alias": ["atendido", "atiende", "atendió"] }] }
+    ]
+  },
+  "lista_mensajes": [
+    "lugar y fecha: guatemala, 29/10/2024 16:33 \n        usuario: @p3rs0n4\n        red social: instagram \n        el día de hoy, fui a una tienda de nike, muy lamentable porque cobran mal ya que los empleados no se encuentan capacidatos. de verdad espero arreglen esto, me siento #enojado.",
+    "lugar y fecha: guatemala, 29/10/2024 11:00\n        usuario: princess01\n        red social: x \n        maravilloso el servicio de walmart, su la persona que me atendió de verdad sabía lo que hacía.",
+    "lugar y fecha: guatemala, 01/11/2024 11:40\n        usuario: xx$$money$$xx\n        red social: facebook \n        quiero compartirles que en adidas  me han vendido unos pants, honestamente, aunque ha sido bueno el precio con el que los conseguí ahí, siento que ha sido algo deficiente su tiempo de servicio.",
+    "lugar y fecha: guatemala, 02/11/2024 12:00 \n        usuario: user@correo.com\n        red social: facebook \n        a mi me ha encantado como me han atendido hoy en walmart, ¡espero que su servicio siga así!",
+    "lugar y fecha: guatemala, 02/11/2024 12:00\n        usuario: user@correo.com\n        red social: facebook \n        solo quiero decir que ha sido excelente como adidas me ha vendido las cosas, igualmente, muy maravilloso como en nike me han cobrado rápidamente."
+  ]
+}

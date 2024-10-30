@@ -16,8 +16,12 @@
     <h2>Consultas y Reportes</h2>
     <div class="button-group">
       <a href="#" class="btn btn-purple">Consultar Datos</a>
-      <a href="#" class="btn btn-indigo">Resumen por Fecha</a>
-      <a href="#" class="btn btn-pink">Resumen por Rango</a>
+      <button type="button" class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#Date">
+        Resumen por Fecha
+      </button>
+      <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#rangeDate">
+        Resumen por Rango
+      </button>
       <a href="#" class="btn btn-danger">Generar PDF</a>
       <a href="#" class="btn btn-success">Probar Mensaje</a>
       <button type="reset" class="btn btn-danger" id="resetA">Limpiar</button>
@@ -50,5 +54,76 @@
     </div>
   </div>
 </form>
+
+<!-- Estructura del Modal -->
+<div class="modal fade" id="rangeDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="{% url 'range_summary' %}" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rango de fechas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="companySelect" class="form-label">Seleccionar Compañía</label>
+            <select class="form-select" id="companySelect" name="company" multiple>
+              {% for company in companies %}
+              <option value="{{ company }}">{{ company }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input
+            type="text"
+            id="dateRange"
+            name="dateRange"
+            class="form-control"
+            placeholder="Selecciona un rango de fechas"
+          />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Date" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="{% url 'date_summary' %}" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rango de fechas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="companySelect" class="form-label">Seleccionar Compañía</label>
+            <select class="form-select" id="companySelect" name="company" multiple>
+              {% for company in companies %}
+              <option value="{{ company }}">{{ company }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input
+            type="text"
+            id="singleDate"
+            name="singleDate"
+            class="form-control"
+            placeholder="Selecciona un rango de fechas"
+          />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

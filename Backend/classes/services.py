@@ -74,7 +74,7 @@ class Message:
 
         # Convertir la fecha
         date_str = date_part.replace("guatemala, ", "").strip()
-        self.date = datetime.strptime(date_str, "%d/%m/%Y %H:%M")
+        self.date = datetime.strptime(date_str, "%d/%m/%Y %H:%M").date()
 
     def analyze_message(self, dictionary):
         translator = str.maketrans("", "", string.punctuation)
@@ -168,7 +168,6 @@ class DataAnalizeManager:
 
         return json.dumps(response, indent=4)
 
-
 class DataAnalize:
     def __init__(self, dictionary, messages_list):
         self.dictionary = dictionary
@@ -195,43 +194,3 @@ class DataAnalize:
                                 service.negative_messages += message.negative_messages
                                 service.neutral_messages += message.neutral_messages
                                 break
-
-    def generate_json_response(self):
-        response = {
-            "fecha": "01/04/2022",  # Puedes ajustar la fecha según sea necesario
-            "mensajes": {
-                "total": self.total_messages,
-                "positivos": self.positive_messages,
-                "negativos": self.negative_messages,
-                "neutros": self.neutral_messages,
-            },
-            "analisis": [],
-        }
-
-        for company in self.dictionary.analize_companies:
-            company_data = {
-                "nombre": company.name,
-                "mensajes": {
-                    "total": company.total_messages,
-                    "positivos": company.positive_messages,
-                    "negativos": company.negative_messages,
-                    "neutros": company.neutral_messages,
-                },
-                "servicios": [],
-            }
-
-            for service in company.services:
-                service_data = {
-                    "nombre": service.name,
-                    "mensajes": {
-                        "total": service.total_messages,
-                        "positivos": service.positive_messages,
-                        "negativos": service.negative_messages,
-                        "neutros": service.neutral_messages,
-                    },
-                }
-                company_data["servicios"].append(service_data)
-
-            response["analisis"].append(company_data)
-
-        return json.dumps(response, indent=4)

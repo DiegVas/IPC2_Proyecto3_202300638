@@ -267,3 +267,399 @@ body {
     gap: 1rem;
   }
 }
+
+/* main.css */
+:root {
+  --primary-bg: #ffffff;
+  --card-bg: #1a1633;
+  --text-primary: #ffffff;
+  --text-secondary: #b4b2c5;
+  --accent-purple: #6b4fbb;
+  --accent-blue: #4a90e2;
+}
+
+/* Reset Bootstrap overrides */
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header and Navigation fixes */
+.main-header {
+  background-color: var(--card-bg);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+/* Card styling restoration */
+.card {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem 2rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+}
+
+/* Button group fixes */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Button styling restoration */
+.btn {
+  display: inline-block !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 4px !important;
+  border: none !important;
+  color: white !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+}
+
+.btn-purple {
+  background-color: var(--accent-purple) !important;
+}
+.btn-indigo {
+  background-color: #6366f1 !important;
+}
+.btn-pink {
+  background-color: #ec4899 !important;
+}
+.btn-danger {
+  background-color: #ef4444 !important;
+}
+.btn-success {
+  background-color: #2ecc71 !important;
+}
+
+/* Text area fixes */
+.analysis-textarea {
+  height: 400px !important;
+  min-height: 300px !important;
+  resize: vertical !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  color: var(--text-primary) !important;
+  width: 100% !important;
+  font-family: inherit !important;
+  line-height: 1.5 !important;
+  padding: 1rem !important;
+}
+
+/* Textarea container layout */
+.textarea-row {
+  display: flex;
+  gap: 5rem;
+  padding: 0 20px;
+  margin-top: 2rem;
+}
+
+.textarea-container {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Analysis title styling */
+.analysis-title {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Flatpickr customization */
+.flatpickr-calendar {
+  background: var(--card-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.flatpickr-day {
+  color: var(--text-primary) !important;
+}
+
+.flatpickr-day.selected {
+  background: var(--accent-purple) !important;
+  border-color: var(--accent-purple) !important;
+}
+
+/* Modal styling fixes */
+.modal-content {
+  background-color: var(--card-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+/* main.css */
+:root {
+  --primary-bg: #ffffff;
+  --card-bg: #1a1633;
+  --text-primary: #ffffff;
+  --text-secondary: #b4b2c5;
+  --accent-purple: #6b4fbb;
+  --accent-blue: #4a90e2;
+  --dark-bg: #13111f;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card title typography */
+.card h2 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Textarea labels */
+.textarea-container label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Card styling */
+.card {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem 2rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+}
+
+/* Button styling with updated typography */
+.btn {
+  display: inline-block !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 4px !important;
+  border: none !important;
+  color: white !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+/* Analysis title with correct typography */
+.analysis-title {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* Text area styling */
+.analysis-textarea {
+  height: 400px !important;
+  min-height: 300px !important;
+  resize: vertical !important;
+  background-color: rgba(26, 22, 51, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  color: var(--text-primary) !important;
+  width: 100% !important;
+  font-family: monospace !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  padding: 1rem !important;
+}
+
+/* Section titles */
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+/* Textarea labels */
+.textarea-label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Navigation text */
+.nav-link {
+  color: var(--text-secondary) !important;
+  font-size: 0.875rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary) !important;
+}
+
+/* Brand name */
+.brand-name {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Button colors with proper opacity */
+.btn-purple {
+  background-color: var(--accent-purple) !important;
+  opacity: 0.9;
+}
+.btn-indigo {
+  background-color: #6366f1 !important;
+  opacity: 0.9;
+}
+.btn-pink {
+  background-color: #ec4899 !important;
+  opacity: 0.9;
+}
+.btn-danger {
+  background-color: #ef4444 !important;
+  opacity: 0.9;
+}
+.btn-success {
+  background-color: #2ecc71 !important;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1 !important;
+}
+
+/* Dropdown menu typography */
+.dropdown-content a {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Modal typography */
+.modal-title {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.modal-body {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Estilos personalizados para Flatpickr */
+.flatpickr-calendar {
+  background: var(--card-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.flatpickr-day {
+  color: var(--text-primary) !important;
+  border-radius: 4px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  margin: 2px !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: var(--accent-purple) !important;
+  border-color: var(--accent-purple) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.flatpickr-day.inRange {
+  background: rgba(107, 79, 187, 0.3) !important;
+  border-color: transparent !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.flatpickr-day:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.flatpickr-day.today {
+  border: 2px solid var(--accent-purple) !important;
+}
+
+.flatpickr-months .flatpickr-month {
+  color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
+}
+
+.flatpickr-current-month {
+  font-size: 1.1em !important;
+  padding: 8px 0 !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  color: var(--text-secondary) !important;
+  fill: var(--text-secondary) !important;
+  padding: 8px !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+  color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
+}
+
+.flatpickr-weekday {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+.flatpickr-day.disabled {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
